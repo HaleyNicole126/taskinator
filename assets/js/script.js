@@ -129,6 +129,63 @@ var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+  // get task items from localStorage
+
+  // converts tasks from the string format back into an array of objects
+
+  // iterates through a tasks array and creates task elements on the page from it 
+
+var loadTasks = function() {
+  var savedTasks = localStorage.getItem("tasks");
+
+  if (!savedTasks) { 
+      return false;
+  }
+
+  savedTasks = JSON.parse(savedTasks);
+
+  // loop through savedTasks array
+  for (var i = 0; i < savedTasks.length; i++) {
+    // pass each task object into the 'createTaskEl()' function
+    createTaskEl(savedTasks[i]);
+  }
+}
+  // var createTaskEl = function(taskDataObj) {
+
+  //   // create list items
+  //   var listItemEl = document.createElement("li");
+  //   listItemEl.className = "task-item";
+  
+  //   // add task id as a custom attribute
+  //   listItemEl.setAttribute("data-task-id", taskIdCounter);
+  
+  // // create div to hold task info and add to list item
+  //   var taskInfoEl = document.createElement("div");
+  // // give it a class name
+  //   taskInfoEl.className = "task-info";
+  // // add HTML content to div
+  //   taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";   
+    
+  //   listItemEl.appendChild(taskInfoEl);
+  
+  //   taskDataObj.id = taskIdCounter;
+  
+  //   tasks.push(taskDataObj);
+  
+  //   var taskActionsEl = createTaskActions(taskIdCounter);
+  //   listItemEl.appendChild(taskActionsEl);
+  
+  //   // add entire list item to list
+  //   tasksToDoEl.appendChild(listItemEl);  
+  
+  //   saveTasks();
+  //   // increase task counter for next unique id
+  //   taskIdCounter++;
+  // };
+
+
+console.log()
+
 formEl.addEventListener("submit", taskFormHandler);
 
 var taskButtonHandler = function(event) {
@@ -248,6 +305,8 @@ var taskStatusChangeHandler = function(event) {
 pageContentEl.addEventListener("click", taskButtonHandler);
 
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
+
+loadTasks();
 
 
 
